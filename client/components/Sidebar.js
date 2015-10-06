@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import UserList from 'components/UserList';
 
 const styles = {
   container: {
@@ -16,7 +17,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div style={styles.container}>
-        yolo
+        <UserList/>
       </div>
     );
   }
