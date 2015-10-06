@@ -1,5 +1,11 @@
 import { Component, PropTypes } from 'react';
 
+const styles = {
+  container: {
+    marginBottom: 10
+  }
+};
+
 class User extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired
@@ -7,7 +13,7 @@ class User extends Component {
 
   render() {
     return (
-      <li>{this.props.name}</li>
+      <li style={styles.container}>{this.props.name}</li>
     );
   }
 }

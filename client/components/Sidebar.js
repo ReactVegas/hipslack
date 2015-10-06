@@ -9,6 +9,7 @@ const styles = {
     color: 'white',
     overflow: 'auto',
     position: 'fixed',
+    paddingTop: '20px',
     backgroundColor: '#1F2933'
   }
 };
