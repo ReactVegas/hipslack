@@ -20,7 +20,7 @@ class UserList extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <h1 style={styles.heading}>USERS ONLINE</h1>
+        <h1 style={styles.heading}>{`${users.length} USERS ONLINE`}</h1>
         <ul>
           {users.map((user) =>
             <User key={user.name} name={user.name}/>
