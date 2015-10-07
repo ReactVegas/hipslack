@@ -1,13 +1,12 @@
 import { Component, PropTypes } from 'react';
-import { INPUT_HEIGHT } from 'constants/styles';
 import Message from 'components/Message';
 
 const styles = {
   container: {
+    width: '100%',
     maxHeight: '100%',
-    padding: `15px 15px ${INPUT_HEIGHT}px`,
-    position: 'absolute',
-    bottom: 0
+    overflowY: 'scroll',
+    padding: '15px 15px 5px'
   }
 };
 

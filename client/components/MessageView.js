@@ -1,14 +1,18 @@
 import { Component } from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
-import { SIDEBAR_WIDTH } from 'constants/styles';
+import { SIDEBAR_WIDTH, INPUT_HEIGHT } from 'constants/styles';
 import { DEFAULT_MESSAGES } from 'constants/data';
 
 const styles = {
   container: {
-    height: '100%',
-    paddingLeft: SIDEBAR_WIDTH,
-    position: 'relative'
+    top: 0,
+    right: 0,
+    position: 'fixed',
+    left: SIDEBAR_WIDTH,
+    bottom: INPUT_HEIGHT,
+    alignItems: 'flex-end',
+    display: 'flex'
   }
 };
 
