@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import { connect } from 'react-redux';
+import { Component, PropTypes } from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import { SIDEBAR_WIDTH, INPUT_HEIGHT } from 'constants/styles';
-import { DEFAULT_MESSAGES } from 'constants/data';
 
 const styles = {
   container: {
@@ -17,14 +17,22 @@ const styles = {
 };
 
 class MessageView extends Component {
+  static propTypes = {
+    messages: PropTypes.array.isRequired
+  }
+
   render() {
     return (
       <div style={styles.container}>
-        <MessageList messages={DEFAULT_MESSAGES}/>
+        <MessageList messages={this.props.messages}/>
         <MessageInput/>
       </div>
     );
   }
 }
 
-export default MessageView;
+function select(state) {
+  return { messages: state.data.messages };
+}
+
+export default connect(select)(MessageView);
