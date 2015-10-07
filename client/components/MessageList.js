@@ -1,9 +1,13 @@
 import { Component, PropTypes } from 'react';
+import { INPUT_HEIGHT } from 'constants/styles';
 import Message from 'components/Message';
 
 const styles = {
   container: {
-    padding: 15
+    maxHeight: '100%',
+    padding: `15px 15px ${INPUT_HEIGHT}px`,
+    position: 'absolute',
+    bottom: 0
   }
 };
 

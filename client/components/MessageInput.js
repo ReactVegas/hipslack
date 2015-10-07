@@ -7,6 +7,7 @@ const styles = {
     bottom: 0,
     left: SIDEBAR_WIDTH,
     height: INPUT_HEIGHT,
+    backgroundColor: 'white',
     position: 'fixed',
     padding: '0 14px'
   },
