@@ -1,10 +1,6 @@
 import { Component } from 'react';
 import User from 'components/User';
-
-const users = [
-  {name: 'john doe'},
-  {name: 'jane doe'}
-];
+import { DEFAULT_USERS } from 'constants/data';
 
 const styles = {
   container: {
@@ -20,9 +16,9 @@ class UserList extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <h1 style={styles.heading}>{`${users.length} USERS ONLINE`}</h1>
+        <h1 style={styles.heading}>{`${DEFAULT_USERS.length} USERS ONLINE`}</h1>
         <ul>
-          {users.map((user) =>
+          {DEFAULT_USERS.map((user) =>
             <User key={user.name} name={user.name}/>
           )}
         </ul>

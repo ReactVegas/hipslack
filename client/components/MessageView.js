@@ -2,11 +2,7 @@ import { Component } from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import { SIDEBAR_WIDTH, INPUT_HEIGHT } from 'constants/styles';
-
-const messages = [
-  {content: 'whatup?', author: 'john doe'},
-  {content: 'chilling', author: 'jane doe'}
-];
+import { DEFAULT_MESSAGES } from 'constants/data';
 
 const styles = {
   container: {
@@ -23,7 +19,7 @@ class MessageView extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <MessageList messages={messages}/>
+        <MessageList messages={DEFAULT_MESSAGES}/>
         <MessageInput/>
       </div>
     );
