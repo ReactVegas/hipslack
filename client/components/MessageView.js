@@ -5,6 +5,7 @@ import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import { SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT } from 'constants/styles';
 import { setMessageInput, toggleMessageFocused, toggleshowModal } from 'actions/ui';
+import { postMessage } from 'actions/data';
 
 const styles = {
   container: {
@@ -21,6 +22,7 @@ const styles = {
 class MessageView extends Component {
   static propTypes = {
     messages: PropTypes.array.isRequired,
+    postMessage: PropTypes.func.isRequired,
     messageInput: PropTypes.string.isRequired,
     setMessageInput: PropTypes.func.isRequired,
     toggleMessageFocused: PropTypes.func.isRequired,
@@ -30,11 +32,12 @@ class MessageView extends Component {
   }
 
   render() {
-    const { messages, messageInput, setMessageInput, messageFocused, toggleshowModal, toggleMessageFocused, currentUser } = this.props;
+    const { messages, messageInput, setMessageInput, postMessage, messageFocused, toggleshowModal, toggleMessageFocused, currentUser } = this.props;
     return (
       <div style={styles.container}>
         <MessageList messages={messages}/>
         <MessageInput
+          postMessage={postMessage}
           messageInput={messageInput}
           setMessageInput={setMessageInput}
           toggleMessageFocused={toggleMessageFocused}
@@ -59,6 +62,7 @@ function select(state) {
 
 function actions(dispatch) {
   return bindActionCreators({
+    postMessage: postMessage,
     setMessageInput: setMessageInput,
     toggleMessageFocused: toggleMessageFocused,
     toggleshowModal: toggleshowModal

@@ -16,10 +16,11 @@ const styles = {
 
 class MessageInput extends Component {
   static propTypes = {
+    postMessage: PropTypes.func.isRequired,
     messageInput: PropTypes.string.isRequired,
     setMessageInput: PropTypes.func.isRequired,
-    toggleMessageFocused: PropTypes.func.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
+    toggleMessageFocused: PropTypes.func.isRequired,
     messageFocused: PropTypes.bool.isRequired,
     currentUser: PropTypes.object.isRequired
   }
@@ -32,11 +33,20 @@ class MessageInput extends Component {
           value={messageInput}
           onFocus={::this.handleFocus}
           onBlur={() => toggleMessageFocused(false)}
+          onKeyDown={(event) => this.handleKeyDown(event)}
           onChange={(event) => setMessageInput(event.target.value)}
           style={{...styles.input, borderColor: messageFocused ? '#3699EE' : '#E0E0E0'}}
         />
       </div>
     );
+  }
+
+  handleKeyDown(event) {
+    const { postMessage, messageInput, currentUser, setMessageInput } = this.props;
+    if (event.keyCode === 13) {
+      postMessage(messageInput, currentUser.name);
+      setMessageInput('');
+    }
   }
 
   handleFocus() {
