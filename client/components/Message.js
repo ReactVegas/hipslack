@@ -1,6 +1,6 @@
-import { Component, PropTypes } from 'react';
+import {Component, PropTypes} from 'react';
 
-const styles = {
+let styles = {
   container: {
     marginBottom: 10
   },
@@ -18,7 +18,7 @@ class Message extends Component {
   }
 
   render() {
-    const { message } = this.props;
+    let {message} = this.props;
     return (
       <div style={styles.container}>
         <span style={styles.author}>{message.author}: </span>

@@ -1,9 +1,9 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Component, PropTypes } from 'react';
-import { toggleshowModal } from 'actions/ui';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {Component, PropTypes} from 'react';
+import {toggleshowModal} from 'actions/ui';
 
-const styles = {
+let styles = {
   container: {
     top: 0,
     left: 0,
@@ -35,19 +35,19 @@ class Modal extends Component {
   }
 
   render() {
-    const { showModal, toggleshowModal } = this.props;
+    let {showModal, toggleshowModal} = this.props;
 
-    if (!showModal) {
+    if (showModal) {
+      return (
+        <div style={styles.container} onClick={() => toggleshowModal(false)}>
+          <div style={styles.content} onClick={(event) => event.stopPropagation()}>
+            {this.props.children}
+          </div>
+        </div>
+      );
+    } else {
       return null;
     }
-
-    return (
-      <div style={styles.container} onClick={() => toggleshowModal(false)}>
-        <div style={styles.content} onClick={(event) => event.stopPropagation()}>
-          {this.props.children}
-        </div>
-      </div>
-    );
   }
 }
 

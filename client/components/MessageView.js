@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Component, PropTypes } from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {Component, PropTypes} from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
-import { SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT } from 'constants/styles';
-import { setMessageInput, toggleMessageFocused, toggleshowModal } from 'actions/ui';
-import { postMessage } from 'actions/data';
+import {SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT} from 'constants/styles';
+import {setMessageInput, toggleMessageFocused, toggleshowModal} from 'actions/ui';
+import {postMessage} from 'actions/data';
 
-const styles = {
+let styles = {
   container: {
     top: 0,
     right: 0,
@@ -32,7 +32,7 @@ class MessageView extends Component {
   }
 
   render() {
-    const { messages, messageInput, setMessageInput, postMessage, messageFocused, toggleshowModal, toggleMessageFocused, currentUser } = this.props;
+    let {messages, messageInput, setMessageInput, postMessage, messageFocused, toggleshowModal, toggleMessageFocused, currentUser} = this.props;
     return (
       <div style={styles.container}>
         <MessageList messages={messages} />
@@ -51,7 +51,7 @@ class MessageView extends Component {
 }
 
 function select(state) {
-  const { data, ui } = state;
+  let {data, ui} = state;
   return {
     messages: data.messages,
     messageInput: ui.messageInput,

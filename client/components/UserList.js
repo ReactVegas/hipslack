@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-import { Component, PropTypes } from 'react';
+import {connect} from 'react-redux';
+import {Component, PropTypes} from 'react';
 import User from 'components/User';
 
-const styles = {
+let styles = {
   container: {
     padding: '0 15px'
   },
@@ -19,7 +19,7 @@ class UserList extends Component {
   }
 
   render() {
-    const { users } = this.props;
+    let {users} = this.props;
     return (
       <div style={styles.container}>
         <div style={styles.heading}>

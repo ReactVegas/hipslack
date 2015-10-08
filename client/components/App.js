@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import {Component} from 'react';
 import Modal from 'components/Modal';
 import Sidebar from 'components/Sidebar';
 import MessageView from 'components/MessageView';

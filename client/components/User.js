@@ -1,6 +1,6 @@
-import { Component, PropTypes } from 'react';
+import {Component, PropTypes} from 'react';
 
-const styles = {
+let styles = {
   container: {
     marginBottom: 10
   },

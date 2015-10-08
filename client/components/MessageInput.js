@@ -1,7 +1,7 @@
-import { Component, PropTypes } from 'react';
-import { SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT, INPUT_STYLES } from 'constants/styles';
+import {Component, PropTypes} from 'react';
+import {SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT, INPUT_STYLES} from 'constants/styles';
 
-const styles = {
+let styles = {
   container: {
     right: 0,
     bottom: 0,
@@ -17,7 +17,7 @@ const styles = {
   }
 };
 
-const ENTER_KEY_CODE = 13;
+let ENTER_KEY_CODE = 13;
 
 class MessageInput extends Component {
   static propTypes = {
@@ -31,7 +31,7 @@ class MessageInput extends Component {
   }
 
   render() {
-    const { messageInput, setMessageInput, toggleMessageFocused } = this.props;
+    let { messageInput, setMessageInput, toggleMessageFocused } = this.props;
 
     return (
       <div style={styles.container}>
@@ -48,7 +48,7 @@ class MessageInput extends Component {
   }
 
   handleKeyDown(event) {
-    const { postMessage, messageInput, currentUser, setMessageInput } = this.props;
+    let {postMessage, messageInput, currentUser, setMessageInput} = this.props;
     if (event.keyCode === ENTER_KEY_CODE) {
       postMessage(messageInput, currentUser.name);
       setMessageInput('');
@@ -56,7 +56,7 @@ class MessageInput extends Component {
   }
 
   handleFocus() {
-    const { toggleMessageFocused, toggleshowModal, currentUser } = this.props;
+    let {toggleMessageFocused, toggleshowModal, currentUser} = this.props;
     toggleMessageFocused(true);
     if (!currentUser.name) {
       toggleshowModal(true);

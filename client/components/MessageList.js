@@ -1,7 +1,7 @@
-import { Component, PropTypes } from 'react';
+import {Component, PropTypes} from 'react';
 import Message from 'components/Message';
 
-const styles = {
+let styles = {
   container: {
     width: '100%',
     maxHeight: '100%',

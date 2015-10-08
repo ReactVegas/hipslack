@@ -1,4 +1,4 @@
-export function users(state=[], { type, payload }) {
+export function users(state=[], {type, payload}) {
   switch (type) {
   case 'POST_USER_SUCCEEDED':
     return [ ...state, payload.name];
@@ -7,10 +7,10 @@ export function users(state=[], { type, payload }) {
   }
 }
 
-export function messages(state=[], { type, payload }) {
+export function messages(state=[], {type, payload}) {
   switch (type) {
   case 'POST_MESSAGE_SUCCEEDED':
-    return [ ...state, { content: payload.content, author: payload.author }];
+    return [ ...state, {content: payload.content, author: payload.author}];
   default:
     return state;
   }

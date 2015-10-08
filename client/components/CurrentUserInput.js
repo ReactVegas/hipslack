@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Component, PropTypes } from 'react';
-import { INPUT_STYLES, BUTTON_STYLES } from 'constants/styles';
-import { setCurrentUserInput, toggleshowModal } from 'actions/ui';
-import { postUser } from 'actions/data';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {Component, PropTypes} from 'react';
+import {INPUT_STYLES, BUTTON_STYLES} from 'constants/styles';
+import {setCurrentUserInput, toggleshowModal} from 'actions/ui';
+import {postUser} from 'actions/data';
 
-const styles = {
+let styles = {
   title: {
     fontSize: 20,
     marginBottom: 20
@@ -27,7 +27,7 @@ class CurrentUserInput extends Component {
   }
 
   render() {
-    const { currentUserInput, setCurrentUserInput } = this.props;
+    let {currentUserInput, setCurrentUserInput} = this.props;
     return (
       <div>
         <div style={styles.title}>
@@ -48,7 +48,7 @@ class CurrentUserInput extends Component {
   }
 
   handleClick() {
-    const { postUser, currentUserInput, setCurrentUserInput, toggleshowModal } = this.props;
+    let {postUser, currentUserInput, setCurrentUserInput, toggleshowModal} = this.props;
     postUser({name: currentUserInput});
     setCurrentUserInput('');
     toggleshowModal(false);

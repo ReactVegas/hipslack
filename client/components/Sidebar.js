@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import {Component} from 'react';
 import UserList from 'components/UserList';
-import { SIDEBAR_WIDTH } from 'constants/styles';
+import {SIDEBAR_WIDTH} from 'constants/styles';
 
-const styles = {
+let styles = {
   container: {
     top: 0,
     left: 0,
