@@ -16,22 +16,22 @@ const styles = {
 
 class MessageInput extends Component {
   static propTypes = {
-    messageValue: PropTypes.string.isRequired,
-    setMessageValue: PropTypes.func.isRequired,
+    messageInput: PropTypes.string.isRequired,
+    setMessageInput: PropTypes.func.isRequired,
     toggleMessageFocused: PropTypes.func.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
     messageFocused: PropTypes.bool.isRequired
   }
 
   render() {
-    const { messageValue, setMessageValue, messageFocused, toggleMessageFocused } = this.props;
+    const { messageInput, setMessageInput, messageFocused, toggleMessageFocused } = this.props;
     return (
       <div style={styles.container}>
         <input
-          value={messageValue}
+          value={messageInput}
           onFocus={::this.handleFocus}
           onBlur={() => toggleMessageFocused(false)}
-          onChange={(event) => setMessageValue(event.target.value)}
+          onChange={(event) => setMessageInput(event.target.value)}
           style={{...styles.input, borderColor: messageFocused ? '#3699EE' : '#E0E0E0'}}
         />
       </div>

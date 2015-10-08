@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Component, PropTypes } from 'react';
 import { INPUT_STYLES, BUTTON_STYLES } from 'constants/styles';
-import { setCurrentUser } from 'actions/ui';
+import { setCurrentUserInput } from 'actions/ui';
+import { postUser } from 'actions/ui';
 
 const styles = {
   title: {
@@ -19,12 +20,13 @@ const styles = {
 
 class CurrentUserInput extends Component {
   static propTypes = {
-    currentUser: PropTypes.string.isRequired,
-    setCurrentUser: PropTypes.func.isRequired
+    currentUserInput: PropTypes.string.isRequired,
+    setCurrentUserInput: PropTypes.func.isRequired,
+    postUser: PropTypes.func.isRequired
   }
 
   render() {
-    const { currentUser, setCurrentUser } = this.props;
+    const { currentUserInput, setCurrentUserInput } = this.props;
     return (
       <div>
         <div style={styles.title}>
@@ -34,8 +36,8 @@ class CurrentUserInput extends Component {
           autoFocus={true}
           style={styles.input}
           placeholder="Enter your name..."
-          onChange={(event) => setCurrentUser(event.target.value)}
-          value={currentUser}
+          onChange={(event) => setCurrentUserInput(event.target.value)}
+          value={currentUserInput}
         />
         <button style={styles.button} onClick={::this.handleClick}>
           Join Hipslack!
@@ -51,13 +53,14 @@ class CurrentUserInput extends Component {
 
 function select(state) {
   return {
-    currentUser: state.ui.currentUser
+    currentUserInput: state.ui.currentUserInput
   };
 }
 
 function actions(dispatch) {
   return bindActionCreators({
-    setCurrentUser: setCurrentUser
+    setCurrentUserInput: setCurrentUserInput,
+    postUser: postUser
   }, dispatch);
 }
 

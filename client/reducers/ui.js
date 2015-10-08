@@ -1,16 +1,16 @@
-export function currentUser(state='', { type, payload }) {
+export function currentUserInput(state='', { type, payload }) {
   switch (type) {
-  case 'SET_CURRENT_USER':
+  case 'SET_CURRENT_USER_INPUT':
     return payload.name;
   default:
     return state;
   }
 }
 
-export function messageValue(state='', { type, payload }) {
+export function messageInput(state='', { type, payload }) {
   switch (type) {
-  case 'SET_MESSAGE_VALUE':
-    return payload.value;
+  case 'SET_MESSAGE_INPUT':
+    return payload.input;
   default:
     return state;
   }

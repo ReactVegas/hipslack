@@ -1,13 +1,13 @@
-export function setMessageValue(value) {
+export function setMessageInput(input) {
   return {
-    type: 'SET_MESSAGE_VALUE',
-    payload: { value: value }
+    type: 'SET_MESSAGE_INPUT',
+    payload: { input: input }
   };
 }
 
-export function setCurrentUser(name) {
+export function setCurrentUserInput(name) {
   return {
-    type: 'SET_CURRENT_USER',
+    type: 'SET_CURRENT_USER_INPUT',
     payload: { name: name }
   };
 }

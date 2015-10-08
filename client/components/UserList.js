@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import { connect } from 'react-redux';
+import { Component, PropTypes } from 'react';
 import User from 'components/User';
-import { DEFAULT_USERS } from 'constants/data';
 
 const styles = {
   container: {
@@ -13,13 +13,18 @@ const styles = {
 };
 
 class UserList extends Component {
+  static propTypes = {
+    users: PropTypes.array.isRequired
+  }
+
   render() {
+    const { users } = this.props;
     return (
       <div style={styles.container}>
-        <h1 style={styles.heading}>{`${DEFAULT_USERS.length} USERS ONLINE`}</h1>
+        <h1 style={styles.heading}>{`${users.length} USERS ONLINE`}</h1>
         <ul>
-          {DEFAULT_USERS.map((user) =>
-            <User key={user.name} name={user.name}/>
+          {users.map((user, index) =>
+            <User key={index} user={user}/>
           )}
         </ul>
       </div>
@@ -27,4 +32,10 @@ class UserList extends Component {
   }
 }
 
-export default UserList;
+function select(state) {
+  return {
+    users: state.data.users
+  };
+}
+
+export default connect(select)(UserList);

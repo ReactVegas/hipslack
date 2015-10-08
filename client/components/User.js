@@ -11,14 +11,14 @@ const styles = {
 
 class User extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired
+    user: PropTypes.object.isRequired
   }
 
   render() {
     return (
       <li style={styles.container}>
         <span style={styles.highlight}>&#9679; </span>
-        <span>{this.props.name}</span>
+        <span>{this.props.user.name}</span>
       </li>
     );
   }
