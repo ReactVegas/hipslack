@@ -8,7 +8,8 @@ const styles = {
   },
   heading: {
     marginBottom: 15,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textTransform: 'uppercase'
   }
 };
 
@@ -21,12 +22,12 @@ class UserList extends Component {
     const { users } = this.props;
     return (
       <div style={styles.container}>
-        <h1 style={styles.heading}>{`${users.length} USERS ONLINE`}</h1>
-        <ul>
-          {users.map((user, index) =>
-            <User key={index} user={user}/>
-          )}
-        </ul>
+        <div style={styles.heading}>
+          {`${users.length} Users Online`}
+        </div>
+        {users.map((user, index) =>
+          <User key={index} user={user} />
+        )}
       </div>
     );
   }

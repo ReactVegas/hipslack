@@ -35,7 +35,7 @@ class MessageView extends Component {
     const { messages, messageInput, setMessageInput, postMessage, messageFocused, toggleshowModal, toggleMessageFocused, currentUser } = this.props;
     return (
       <div style={styles.container}>
-        <MessageList messages={messages}/>
+        <MessageList messages={messages} />
         <MessageInput
           postMessage={postMessage}
           messageInput={messageInput}

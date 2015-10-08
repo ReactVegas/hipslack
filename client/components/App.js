@@ -8,10 +8,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Sidebar/>
-        <MessageView/>
+        <Sidebar />
+        <MessageView />
         <Modal>
-          <CurrentUserInput/>
+          <CurrentUserInput />
         </Modal>
       </div>
     );

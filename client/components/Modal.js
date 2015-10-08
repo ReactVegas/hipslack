@@ -35,22 +35,19 @@ class Modal extends Component {
   }
 
   render() {
-    return (
-      <div>{this.modal()}</div>
-    );
-  }
-
-  modal() {
     const { showModal, toggleshowModal } = this.props;
-    if (showModal) {
-      return (
-        <div style={styles.container} onClick={() => toggleshowModal(false)}>
-          <div style={styles.content} onClick={(event) => event.stopPropagation()}>
-            {this.props.children}
-          </div>
-        </div>
-      );
+
+    if (!showModal) {
+      return null;
     }
+
+    return (
+      <div style={styles.container} onClick={() => toggleshowModal(false)}>
+        <div style={styles.content} onClick={(event) => event.stopPropagation()}>
+          {this.props.children}
+        </div>
+      </div>
+    );
   }
 }
 

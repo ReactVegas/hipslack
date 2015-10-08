@@ -17,11 +17,11 @@ class MessageList extends Component {
 
   render() {
     return (
-      <ul style={styles.container}>
+      <div style={styles.container}>
         {this.props.messages.map((message, index) =>
           <Message key={index} message={message}/>
         )}
-      </ul>
+      </div>
     );
   }
 }

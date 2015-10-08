@@ -11,8 +11,13 @@ const styles = {
     position: 'fixed',
     padding: '0 14px'
   },
-  input: INPUT_STYLES
+  input: INPUT_STYLES,
+  inputFocus: {
+    borderColor: '#3699EE'
+  }
 };
+
+const ENTER_KEY_CODE = 13;
 
 class MessageInput extends Component {
   static propTypes = {
@@ -26,7 +31,8 @@ class MessageInput extends Component {
   }
 
   render() {
-    const { messageInput, setMessageInput, messageFocused, toggleMessageFocused } = this.props;
+    const { messageInput, setMessageInput, toggleMessageFocused } = this.props;
+
     return (
       <div style={styles.container}>
         <input
@@ -35,7 +41,7 @@ class MessageInput extends Component {
           onBlur={() => toggleMessageFocused(false)}
           onKeyDown={(event) => this.handleKeyDown(event)}
           onChange={(event) => setMessageInput(event.target.value)}
-          style={{...styles.input, borderColor: messageFocused ? '#3699EE' : '#E0E0E0'}}
+          style={this.inputStyle()}
         />
       </div>
     );
@@ -43,7 +49,7 @@ class MessageInput extends Component {
 
   handleKeyDown(event) {
     const { postMessage, messageInput, currentUser, setMessageInput } = this.props;
-    if (event.keyCode === 13) {
+    if (event.keyCode === ENTER_KEY_CODE) {
       postMessage(messageInput, currentUser.name);
       setMessageInput('');
     }
@@ -54,6 +60,17 @@ class MessageInput extends Component {
     toggleMessageFocused(true);
     if (!currentUser.name) {
       toggleshowModal(true);
+    }
+  }
+
+  inputStyle() {
+    if (this.props.messageFocused) {
+      return {
+        ...styles.input,
+        ...styles.inputFocus
+      };
+    } else {
+      return styles.input;
     }
   }
 }

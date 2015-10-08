@@ -16,10 +16,10 @@ class User extends Component {
 
   render() {
     return (
-      <li style={styles.container}>
+      <div style={styles.container}>
         <span style={styles.highlight}>&#9679; </span>
         <span>{this.props.user.name}</span>
-      </li>
+      </div>
     );
   }
 }

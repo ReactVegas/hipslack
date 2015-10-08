@@ -20,10 +20,10 @@ class Message extends Component {
   render() {
     const { message } = this.props;
     return (
-      <li style={styles.container}>
+      <div style={styles.container}>
         <span style={styles.author}>{message.author}: </span>
         <span>{message.content}</span>
-      </li>
+      </div>
     );
   }
 }

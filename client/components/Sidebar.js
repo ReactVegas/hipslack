@@ -21,7 +21,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <UserList/>
+        <UserList />
       </div>
     );
   }
