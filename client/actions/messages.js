@@ -1,6 +1,6 @@
-export function setMessageValue(value) {
+export function setMessageInput(input) {
   return {
-    type: 'SET_MESSAGE_VALUE',
-    payload: { value: value }
+    type: 'SET_MESSAGE_INPUT',
+    payload: { input: input }
   };
 }

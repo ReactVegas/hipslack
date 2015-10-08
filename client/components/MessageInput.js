@@ -22,13 +22,19 @@ const styles = {
 
 class MessageInput extends Component {
   static propTypes = {
-    setValue: PropTypes.func.isRequired
+    input: PropTypes.string.isRequired,
+    setInput: PropTypes.func.isRequired
   }
 
   render() {
+    const { input, setInput } = this.props;
     return (
       <div style={styles.container}>
-        <input style={styles.input}/>
+        <input
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+          style={styles.input}
+        />
       </div>
     );
   }
