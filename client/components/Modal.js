@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Component, PropTypes } from 'react';
 import { toggleshowModal } from 'actions/ui';
-import CurrentUserInput from 'components/CurrentUserInput';
 
 const styles = {
   container: {
@@ -32,26 +31,32 @@ class Modal extends Component {
   static propTypes = {
     showModal: PropTypes.bool.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
-    currentUser: PropTypes.string.isRequired
+    children: PropTypes.any.isRequired
   }
 
   render() {
-    const { showModal, toggleshowModal, currentUser } = this.props;
     return (
-      <div style={{...styles.container, display: showModal ? 'block' : 'none'}} onClick={() => toggleshowModal(false)}>
-        <div style={styles.content} onClick={(event) => event.stopPropagation()}>
-          <CurrentUserInput currentUser={currentUser}/>
-        </div>
-      </div>
+      <div>{this.modal()}</div>
     );
+  }
+
+  modal() {
+    const { showModal, toggleshowModal } = this.props;
+    if (showModal) {
+      return (
+        <div style={styles.container} onClick={() => toggleshowModal(false)}>
+          <div style={styles.content} onClick={(event) => event.stopPropagation()}>
+            {this.props.children}
+          </div>
+        </div>
+      );
+    }
   }
 }
 
 function select(state) {
-  const { ui } = state;
   return {
-    showModal: ui.showModal,
-    currentUser: ui.currentUser
+    showModal: state.ui.showModal
   };
 }
 

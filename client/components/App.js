@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Modal from 'components/Modal';
 import Sidebar from 'components/Sidebar';
 import MessageView from 'components/MessageView';
+import CurrentUserInput from 'components/CurrentUserInput';
 
 class App extends Component {
   render() {
@@ -9,7 +10,9 @@ class App extends Component {
       <div>
         <Sidebar/>
         <MessageView/>
-        <Modal/>
+        <Modal>
+          <CurrentUserInput/>
+        </Modal>
       </div>
     );
   }

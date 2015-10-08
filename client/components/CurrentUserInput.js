@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import { Component } from 'react';
 import { INPUT_STYLES, BUTTON_STYLES } from 'constants/styles';
 
 const styles = {
@@ -15,17 +15,13 @@ const styles = {
 };
 
 class CurrentUserInput extends Component {
-  static propTypes = {
-    currentUser: PropTypes.string.isRequired
-  }
-
   render() {
     return (
       <div>
         <div style={styles.title}>
           Join Hipslack so you can chat!
         </div>
-        <input style={styles.input}/>
+        <input style={styles.input} placeholder="Enter your name..." autoFocus={true}/>
         <button style={styles.button} onClick={::this.handleClick}>
           Join Hipslack!
         </button>
