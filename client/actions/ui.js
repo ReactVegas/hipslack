@@ -11,3 +11,10 @@ export function toggleInputFocused(bool) {
     payload: { bool: bool }
   };
 }
+
+export function toggleshowModal(bool) {
+  return {
+    type: 'TOGGLE_SHOW_MODAL',
+    payload: { bool: bool }
+  };
+}

@@ -25,6 +25,7 @@ class MessageInput extends Component {
     inputValue: PropTypes.string.isRequired,
     setInputValue: PropTypes.func.isRequired,
     toggleInputFocused: PropTypes.func.isRequired,
+    toggleshowModal: PropTypes.func.isRequired,
     inputFocused: PropTypes.bool.isRequired
   }
 
@@ -34,13 +35,19 @@ class MessageInput extends Component {
       <div style={styles.container}>
         <input
           value={inputValue}
-          onBlur={() => toggleInputFocused(!inputFocused)}
-          onFocus={() => toggleInputFocused(!inputFocused)}
+          onFocus={::this.handleFocus}
+          onBlur={() => toggleInputFocused(false)}
           onChange={(event) => setInputValue(event.target.value)}
           style={{...styles.input, borderColor: inputFocused ? '#72C4FC' : '#E0E0E0'}}
         />
       </div>
     );
+  }
+
+  handleFocus() {
+    const { toggleInputFocused, toggleshowModal } = this.props;
+    toggleInputFocused(true);
+    toggleshowModal(true);
   }
 }
 

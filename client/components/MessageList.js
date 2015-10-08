@@ -12,7 +12,7 @@ const styles = {
 
 class MessageList extends Component {
   static propTypes = {
-    messages: PropTypes.arrayOf(PropTypes.object.isRequired)
+    messages: PropTypes.array.isRequired
   }
 
   render() {

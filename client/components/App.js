@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Modal from 'components/Modal';
 import Sidebar from 'components/Sidebar';
 import MessageView from 'components/MessageView';
 
@@ -8,6 +9,7 @@ class App extends Component {
       <div>
         <Sidebar/>
         <MessageView/>
+        <Modal/>
       </div>
     );
   }

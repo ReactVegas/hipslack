@@ -4,7 +4,7 @@ import { Component, PropTypes } from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import { SIDEBAR_WIDTH, INPUT_HEIGHT } from 'constants/styles';
-import { setInputValue, toggleInputFocused } from 'actions/messages';
+import { setInputValue, toggleInputFocused, toggleshowModal } from 'actions/ui';
 
 const styles = {
   container: {
@@ -24,11 +24,12 @@ class MessageView extends Component {
     inputValue: PropTypes.string.isRequired,
     setInputValue: PropTypes.func.isRequired,
     toggleInputFocused: PropTypes.func.isRequired,
+    toggleshowModal: PropTypes.func.isRequired,
     inputFocused: PropTypes.bool.isRequired
   }
 
   render() {
-    const { messages, inputValue, setInputValue, inputFocused, toggleInputFocused } = this.props;
+    const { messages, inputValue, setInputValue, inputFocused, toggleshowModal, toggleInputFocused } = this.props;
     return (
       <div style={styles.container}>
         <MessageList messages={messages}/>
@@ -36,6 +37,7 @@ class MessageView extends Component {
           inputValue={inputValue}
           setInputValue={setInputValue}
           toggleInputFocused={toggleInputFocused}
+          toggleshowModal={toggleshowModal}
           inputFocused={inputFocused}
         />
       </div>
@@ -55,7 +57,8 @@ function select(state) {
 function actions(dispatch) {
   return bindActionCreators({
     setInputValue: setInputValue,
-    toggleInputFocused: toggleInputFocused
+    toggleInputFocused: toggleInputFocused,
+    toggleshowModal: toggleshowModal
   }, dispatch);
 }
 
