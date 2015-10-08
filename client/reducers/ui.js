@@ -1,7 +1,16 @@
-export function messageInput(state='', { type, payload }) {
+export function inputValue(state='', { type, payload }) {
   switch (type) {
-  case 'SET_MESSAGE_INPUT':
-    return payload.input;
+  case 'SET_INPUT_VALUE':
+    return payload.value;
+  default:
+    return state;
+  }
+}
+
+export function inputFocused(state=false, { type, payload }) {
+  switch (type) {
+  case 'TOGGLE_INPUT_FOCUSED':
+    return payload.bool;
   default:
     return state;
   }

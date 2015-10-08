@@ -15,25 +15,29 @@ const styles = {
     fontSize: 14,
     width: '100%',
     borderRadius: 5,
-    border: '2px solid #E0E0E0',
-    padding: '6px 8px'
+    padding: '6px 8px',
+    border: '2px solid #E0E0E0'
   }
 };
 
 class MessageInput extends Component {
   static propTypes = {
-    input: PropTypes.string.isRequired,
-    setInput: PropTypes.func.isRequired
+    inputValue: PropTypes.string.isRequired,
+    setInputValue: PropTypes.func.isRequired,
+    toggleInputFocused: PropTypes.func.isRequired,
+    inputFocused: PropTypes.bool.isRequired
   }
 
   render() {
-    const { input, setInput } = this.props;
+    const { inputValue, setInputValue, inputFocused, toggleInputFocused } = this.props;
     return (
       <div style={styles.container}>
         <input
-          value={input}
-          onChange={(event) => setInput(event.target.value)}
-          style={styles.input}
+          value={inputValue}
+          onBlur={() => toggleInputFocused(!inputFocused)}
+          onFocus={() => toggleInputFocused(!inputFocused)}
+          onChange={(event) => setInputValue(event.target.value)}
+          style={{...styles.input, borderColor: inputFocused ? '#72C4FC' : '#E0E0E0'}}
         />
       </div>
     );
