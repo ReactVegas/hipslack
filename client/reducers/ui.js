@@ -1,3 +1,12 @@
+export function currentUser(state={}, { type, payload }) {
+  switch (type) {
+  case 'POST_USER_SUCCEEDED':
+    return payload.name;
+  default:
+    return state;
+  }
+}
+
 export function currentUserInput(state='', { type, payload }) {
   switch (type) {
   case 'SET_CURRENT_USER_INPUT':

@@ -20,7 +20,8 @@ class MessageInput extends Component {
     setMessageInput: PropTypes.func.isRequired,
     toggleMessageFocused: PropTypes.func.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
-    messageFocused: PropTypes.bool.isRequired
+    messageFocused: PropTypes.bool.isRequired,
+    currentUser: PropTypes.object.isRequired
   }
 
   render() {
@@ -39,9 +40,11 @@ class MessageInput extends Component {
   }
 
   handleFocus() {
-    const { toggleMessageFocused, toggleshowModal } = this.props;
+    const { toggleMessageFocused, toggleshowModal, currentUser } = this.props;
     toggleMessageFocused(true);
-    toggleshowModal(true);
+    if (!currentUser.name) {
+      toggleshowModal(true);
+    }
   }
 }
 

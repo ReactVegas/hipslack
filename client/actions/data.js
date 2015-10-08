@@ -1,7 +1,7 @@
-function postUserSucceeded(json) {
+function postUserSucceeded(name) {
   return {
     type: 'POST_USER_SUCCEEDED',
-    payload: { json: json }
+    payload: { name: name }
   };
 }
 

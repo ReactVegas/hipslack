@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Component, PropTypes } from 'react';
 import { INPUT_STYLES, BUTTON_STYLES } from 'constants/styles';
-import { setCurrentUserInput } from 'actions/ui';
-import { postUser } from 'actions/ui';
+import { setCurrentUserInput, toggleshowModal } from 'actions/ui';
+import { postUser } from 'actions/data';
 
 const styles = {
   title: {
@@ -22,6 +22,7 @@ class CurrentUserInput extends Component {
   static propTypes = {
     currentUserInput: PropTypes.string.isRequired,
     setCurrentUserInput: PropTypes.func.isRequired,
+    toggleshowModal: PropTypes.func.isRequired,
     postUser: PropTypes.func.isRequired
   }
 
@@ -47,7 +48,10 @@ class CurrentUserInput extends Component {
   }
 
   handleClick() {
-    return 'yolo';
+    const { postUser, currentUserInput, setCurrentUserInput, toggleshowModal } = this.props;
+    postUser({name: currentUserInput});
+    setCurrentUserInput('');
+    toggleshowModal(false);
   }
 }
 
@@ -60,6 +64,7 @@ function select(state) {
 function actions(dispatch) {
   return bindActionCreators({
     setCurrentUserInput: setCurrentUserInput,
+    toggleshowModal: toggleshowModal,
     postUser: postUser
   }, dispatch);
 }

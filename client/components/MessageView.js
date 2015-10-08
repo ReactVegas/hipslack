@@ -25,11 +25,12 @@ class MessageView extends Component {
     setMessageInput: PropTypes.func.isRequired,
     toggleMessageFocused: PropTypes.func.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
-    messageFocused: PropTypes.bool.isRequired
+    messageFocused: PropTypes.bool.isRequired,
+    currentUser: PropTypes.object.isRequired
   }
 
   render() {
-    const { messages, messageInput, setMessageInput, messageFocused, toggleshowModal, toggleMessageFocused } = this.props;
+    const { messages, messageInput, setMessageInput, messageFocused, toggleshowModal, toggleMessageFocused, currentUser } = this.props;
     return (
       <div style={styles.container}>
         <MessageList messages={messages}/>
@@ -39,6 +40,7 @@ class MessageView extends Component {
           toggleMessageFocused={toggleMessageFocused}
           toggleshowModal={toggleshowModal}
           messageFocused={messageFocused}
+          currentUser={currentUser}
         />
       </div>
     );
@@ -50,7 +52,8 @@ function select(state) {
   return {
     messages: data.messages,
     messageInput: ui.messageInput,
-    messageFocused: ui.messageFocused
+    messageFocused: ui.messageFocused,
+    currentUser: ui.currentUser
   };
 }
 
