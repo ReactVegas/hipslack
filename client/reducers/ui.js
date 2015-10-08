@@ -1,15 +1,24 @@
-export function inputValue(state='', { type, payload }) {
+export function currentUser(state='', { type, payload }) {
   switch (type) {
-  case 'SET_INPUT_VALUE':
+  case 'SET_CURRENT_USER':
+    return payload.name;
+  default:
+    return state;
+  }
+}
+
+export function messageValue(state='', { type, payload }) {
+  switch (type) {
+  case 'SET_MESSAGE_VALUE':
     return payload.value;
   default:
     return state;
   }
 }
 
-export function inputFocused(state=false, { type, payload }) {
+export function messageFocused(state=false, { type, payload }) {
   switch (type) {
-  case 'TOGGLE_INPUT_FOCUSED':
+  case 'TOGGLE_MESSAGE_FOCUSED':
     return payload.bool;
   default:
     return state;

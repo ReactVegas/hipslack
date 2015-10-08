@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Component, PropTypes } from 'react';
 import { toggleshowModal } from 'actions/ui';
+import CurrentUserInput from 'components/CurrentUserInput';
 
 const styles = {
   container: {
@@ -13,7 +14,7 @@ const styles = {
     zIndex: 9999,
     position: 'fixed',
     cursor: 'pointer',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   content: {
     borderRadius: 5,
@@ -21,24 +22,25 @@ const styles = {
     textAlign: 'center',
     margin: '0 auto',
     marginTop: 150,
-    minHeight: 300,
+    minHeight: 200,
     maxWidth: 500,
-    padding: 30
+    padding: 40
   }
 };
 
 class Modal extends Component {
   static propTypes = {
     showModal: PropTypes.bool.isRequired,
-    toggleshowModal: PropTypes.func.isRequired
+    toggleshowModal: PropTypes.func.isRequired,
+    currentUser: PropTypes.string.isRequired
   }
 
   render() {
-    const { showModal, toggleshowModal } = this.props;
+    const { showModal, toggleshowModal, currentUser } = this.props;
     return (
       <div style={{...styles.container, display: showModal ? 'block' : 'none'}} onClick={() => toggleshowModal(false)}>
         <div style={styles.content} onClick={(event) => event.stopPropagation()}>
-          yolo
+          <CurrentUserInput currentUser={currentUser}/>
         </div>
       </div>
     );
@@ -48,7 +50,8 @@ class Modal extends Component {
 function select(state) {
   const { ui } = state;
   return {
-    showModal: ui.showModal
+    showModal: ui.showModal,
+    currentUser: ui.currentUser
   };
 }
 

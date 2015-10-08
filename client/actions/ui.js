@@ -1,13 +1,20 @@
-export function setInputValue(value) {
+export function setMessageValue(value) {
   return {
-    type: 'SET_INPUT_VALUE',
+    type: 'SET_MESSAGE_VALUE',
     payload: { value: value }
   };
 }
 
-export function toggleInputFocused(bool) {
+export function setCurrentUser(name) {
   return {
-    type: 'TOGGLE_INPUT_FOCUSED',
+    type: 'SET_CURRENT_USER',
+    payload: { name: name }
+  };
+}
+
+export function toggleMessageFocused(bool) {
+  return {
+    type: 'TOGGLE_MESSAGE_FOCUSED',
     payload: { bool: bool }
   };
 }

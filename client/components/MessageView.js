@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { Component, PropTypes } from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
-import { SIDEBAR_WIDTH, INPUT_HEIGHT } from 'constants/styles';
-import { setInputValue, toggleInputFocused, toggleshowModal } from 'actions/ui';
+import { SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT } from 'constants/styles';
+import { setMessageValue, toggleMessageFocused, toggleshowModal } from 'actions/ui';
 
 const styles = {
   container: {
@@ -12,7 +12,7 @@ const styles = {
     right: 0,
     position: 'fixed',
     left: SIDEBAR_WIDTH,
-    bottom: INPUT_HEIGHT,
+    bottom: MESSAGE_INPUT_CONTAINER_HEIGHT,
     alignItems: 'flex-end',
     display: 'flex'
   }
@@ -21,24 +21,24 @@ const styles = {
 class MessageView extends Component {
   static propTypes = {
     messages: PropTypes.array.isRequired,
-    inputValue: PropTypes.string.isRequired,
-    setInputValue: PropTypes.func.isRequired,
-    toggleInputFocused: PropTypes.func.isRequired,
+    messageValue: PropTypes.string.isRequired,
+    setMessageValue: PropTypes.func.isRequired,
+    toggleMessageFocused: PropTypes.func.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
-    inputFocused: PropTypes.bool.isRequired
+    messageFocused: PropTypes.bool.isRequired
   }
 
   render() {
-    const { messages, inputValue, setInputValue, inputFocused, toggleshowModal, toggleInputFocused } = this.props;
+    const { messages, messageValue, setMessageValue, messageFocused, toggleshowModal, toggleMessageFocused } = this.props;
     return (
       <div style={styles.container}>
         <MessageList messages={messages}/>
         <MessageInput
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          toggleInputFocused={toggleInputFocused}
+          messageValue={messageValue}
+          setMessageValue={setMessageValue}
+          toggleMessageFocused={toggleMessageFocused}
           toggleshowModal={toggleshowModal}
-          inputFocused={inputFocused}
+          messageFocused={messageFocused}
         />
       </div>
     );
@@ -49,15 +49,15 @@ function select(state) {
   const { data, ui } = state;
   return {
     messages: data.messages,
-    inputValue: ui.inputValue,
-    inputFocused: ui.inputFocused
+    messageValue: ui.messageValue,
+    messageFocused: ui.messageFocused
   };
 }
 
 function actions(dispatch) {
   return bindActionCreators({
-    setInputValue: setInputValue,
-    toggleInputFocused: toggleInputFocused,
+    setMessageValue: setMessageValue,
+    toggleMessageFocused: toggleMessageFocused,
     toggleshowModal: toggleshowModal
   }, dispatch);
 }

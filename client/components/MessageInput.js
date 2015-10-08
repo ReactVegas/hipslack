@@ -1,52 +1,46 @@
 import { Component, PropTypes } from 'react';
-import { SIDEBAR_WIDTH, INPUT_HEIGHT } from 'constants/styles';
+import { SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT, INPUT_STYLES } from 'constants/styles';
 
 const styles = {
   container: {
     right: 0,
     bottom: 0,
     left: SIDEBAR_WIDTH,
-    height: INPUT_HEIGHT,
+    height: MESSAGE_INPUT_CONTAINER_HEIGHT,
     backgroundColor: 'white',
     position: 'fixed',
     padding: '0 14px'
   },
-  input: {
-    fontSize: 14,
-    width: '100%',
-    borderRadius: 5,
-    padding: '6px 8px',
-    border: '2px solid #E0E0E0'
-  }
+  input: INPUT_STYLES
 };
 
 class MessageInput extends Component {
   static propTypes = {
-    inputValue: PropTypes.string.isRequired,
-    setInputValue: PropTypes.func.isRequired,
-    toggleInputFocused: PropTypes.func.isRequired,
+    messageValue: PropTypes.string.isRequired,
+    setMessageValue: PropTypes.func.isRequired,
+    toggleMessageFocused: PropTypes.func.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
-    inputFocused: PropTypes.bool.isRequired
+    messageFocused: PropTypes.bool.isRequired
   }
 
   render() {
-    const { inputValue, setInputValue, inputFocused, toggleInputFocused } = this.props;
+    const { messageValue, setMessageValue, messageFocused, toggleMessageFocused } = this.props;
     return (
       <div style={styles.container}>
         <input
-          value={inputValue}
+          value={messageValue}
           onFocus={::this.handleFocus}
-          onBlur={() => toggleInputFocused(false)}
-          onChange={(event) => setInputValue(event.target.value)}
-          style={{...styles.input, borderColor: inputFocused ? '#72C4FC' : '#E0E0E0'}}
+          onBlur={() => toggleMessageFocused(false)}
+          onChange={(event) => setMessageValue(event.target.value)}
+          style={{...styles.input, borderColor: messageFocused ? '#3699EE' : '#E0E0E0'}}
         />
       </div>
     );
   }
 
   handleFocus() {
-    const { toggleInputFocused, toggleshowModal } = this.props;
-    toggleInputFocused(true);
+    const { toggleMessageFocused, toggleshowModal } = this.props;
+    toggleMessageFocused(true);
     toggleshowModal(true);
   }
 }
