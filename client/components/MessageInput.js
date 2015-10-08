@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 import { SIDEBAR_WIDTH, INPUT_HEIGHT } from 'constants/styles';
 
 const styles = {
@@ -21,6 +21,10 @@ const styles = {
 };
 
 class MessageInput extends Component {
+  static propTypes = {
+    setValue: PropTypes.func.isRequired
+  }
+
   render() {
     return (
       <div style={styles.container}>

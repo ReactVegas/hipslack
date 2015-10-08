@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Component, PropTypes } from 'react';
+import { setMessageValue } from 'actions/messages';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import { SIDEBAR_WIDTH, INPUT_HEIGHT } from 'constants/styles';
@@ -18,21 +20,31 @@ const styles = {
 
 class MessageView extends Component {
   static propTypes = {
-    messages: PropTypes.array.isRequired
+    messages: PropTypes.array.isRequired,
+    setMessageValue: PropTypes.func.isRequired
   }
 
   render() {
+    const { messages, setMessageValue } = this.props;
     return (
       <div style={styles.container}>
-        <MessageList messages={this.props.messages}/>
-        <MessageInput/>
+        <MessageList messages={messages}/>
+        <MessageInput setValue={setMessageValue}/>
       </div>
     );
   }
 }
 
 function select(state) {
-  return { messages: state.data.messages };
+  return {
+    messages: state.data.messages
+  };
 }
 
-export default connect(select)(MessageView);
+function actions(dispatch) {
+  return bindActionCreators({
+    setMessageValue: setMessageValue
+  }, dispatch);
+}
+
+export default connect(select, actions)(MessageView);
