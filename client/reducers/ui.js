@@ -25,15 +25,6 @@ export function messageInput(state='', { type, payload }) {
   }
 }
 
-export function messageFocused(state=false, { type, payload }) {
-  switch (type) {
-  case 'TOGGLE_MESSAGE_FOCUSED':
-    return payload.bool;
-  default:
-    return state;
-  }
-}
-
 export function showModal(state=false, { type, payload }) {
   switch (type) {
   case 'TOGGLE_SHOW_MODAL':

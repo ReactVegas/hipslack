@@ -23,7 +23,7 @@ class UserList extends Component {
     return (
       <div style={styles.container}>
         <div style={styles.heading}>
-          {`${users.length} Users Online`}
+          {`${users.length} User${users.length === 1 ? '' : 's'} Online`}
         </div>
         {users.map((user, index) =>
           <User key={index} user={user} />

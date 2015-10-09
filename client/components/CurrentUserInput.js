@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Component, PropTypes} from 'react';
-import {INPUT_STYLES, BUTTON_STYLES} from 'constants/styles';
+import {inputStyles, BUTTON_STYLES} from 'helpers/styles';
 import {setCurrentUserInput, toggleshowModal} from 'actions/ui';
 import {postUser} from 'actions/data';
 
@@ -10,7 +10,6 @@ let styles = {
     fontSize: 20,
     marginBottom: 20
   },
-  input: INPUT_STYLES,
   button: {
     ...BUTTON_STYLES,
     float: 'right',
@@ -26,6 +25,10 @@ class CurrentUserInput extends Component {
     postUser: PropTypes.func.isRequired
   }
 
+  state = {
+    focused: true
+  }
+
   render() {
     let {currentUserInput, setCurrentUserInput} = this.props;
     return (
@@ -35,9 +38,11 @@ class CurrentUserInput extends Component {
         </div>
         <input
           autoFocus={true}
-          style={styles.input}
           placeholder="Enter your name..."
+          onBlur={() => this.setState({focused: false})}
+          onFocus={() => this.setState({focused: true})}
           onChange={(event) => setCurrentUserInput(event.target.value)}
+          style={inputStyles(this.state.focused)}
           value={currentUserInput}
         />
         <button style={styles.button} onClick={::this.handleClick}>

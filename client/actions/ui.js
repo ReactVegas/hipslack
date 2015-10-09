@@ -12,13 +12,6 @@ export function setCurrentUserInput(name) {
   };
 }
 
-export function toggleMessageFocused(bool) {
-  return {
-    type: 'TOGGLE_MESSAGE_FOCUSED',
-    payload: { bool: bool }
-  };
-}
-
 export function toggleshowModal(bool) {
   return {
     type: 'TOGGLE_SHOW_MODAL',

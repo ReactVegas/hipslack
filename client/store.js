@@ -1,14 +1,14 @@
-import { createStore, applyMiddleware } from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import { rootReducer } from 'reducers';
+import {rootReducer} from 'reducers';
 
 let loggerMiddleware = createLogger({
   level: 'info',
   collapsed: true
 });
 
-let localStorage = (store) => (next) => (action) => {
+let localStorageMiddleWare = (store) => (next) => (action) => {
   let result = next(action);
   window.localStorage.setItem('state', JSON.stringify(store.getState()));
   return result;
@@ -17,7 +17,7 @@ let localStorage = (store) => (next) => (action) => {
 let customCreateStore = applyMiddleware(
   thunkMiddleware,
   loggerMiddleware,
-  localStorage
+  localStorageMiddleWare
 )(createStore);
 
 let initialState = JSON.parse(window.localStorage.getItem('state')) || {};
@@ -29,4 +29,4 @@ if (module.hot) {
   });
 }
 
-export { store };
+export {store};

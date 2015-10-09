@@ -31,7 +31,14 @@ class Modal extends Component {
   static propTypes = {
     showModal: PropTypes.bool.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
+    currentUser: PropTypes.object.isRequired,
     children: PropTypes.any.isRequired
+  }
+
+  componentWillMount() {
+    if (!this.props.currentUser.name) {
+      this.props.toggleshowModal(true);
+    }
   }
 
   render() {
@@ -53,7 +60,8 @@ class Modal extends Component {
 
 function select(state) {
   return {
-    showModal: state.ui.showModal
+    showModal: state.ui.showModal,
+    currentUser: state.ui.currentUser
   };
 }
 

@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import UserList from 'components/UserList';
-import {SIDEBAR_WIDTH} from 'constants/styles';
+import {SIDEBAR_WIDTH} from 'helpers/styles';
 
 let styles = {
   container: {

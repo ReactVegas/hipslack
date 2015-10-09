@@ -20,3 +20,14 @@ export const BUTTON_STYLES = {
   borderColor: '#3699EE',
   backgroundColor: '#3699EE'
 };
+
+export function inputStyles(focused) {
+  return {
+    fontSize: 14,
+    width: '100%',
+    borderRadius: 5,
+    padding: '6px 8px',
+    border: '2px solid',
+    borderColor: focused ? '#3699EE' : '#E0E0E0'
+  };
+}
