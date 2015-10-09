@@ -12,7 +12,6 @@ let styles = {
     padding: 10,
     zIndex: 9999,
     position: 'fixed',
-    cursor: 'pointer',
     backgroundColor: 'rgba(0, 0, 0, 0.7)'
   },
   content: {
@@ -42,12 +41,10 @@ class Modal extends Component {
   }
 
   render() {
-    let {showModal, toggleshowModal} = this.props;
-
-    if (showModal) {
+    if (this.props.showModal) {
       return (
-        <div style={styles.container} onClick={() => toggleshowModal(false)}>
-          <div style={styles.content} onClick={(event) => event.stopPropagation()}>
+        <div style={styles.container}>
+          <div style={styles.content}>
             {this.props.children}
           </div>
         </div>
