@@ -1,25 +1,52 @@
-function postUserSucceeded(name) {
+import {endpoint, payload} from 'helpers/network';
+
+function postUserInitiated(name) {
   return {
-    type: 'POST_USER_SUCCEEDED',
+    type: 'POST_USER_INITIATED',
     payload: {name: name}
   };
 }
 
 export function postUser(name) {
   return (dispatch) => {
-    dispatch(postUserSucceeded(name));
+    dispatch(postUserInitiated(name));
   };
 }
 
-function postMessageSucceeded(content, author) {
+function postMessageInitiated(content, author) {
+  return {
+    type: 'POST_MESSAGE_INITIATED',
+    payload: {content: content, author: author}
+  };
+}
+
+function postMessageSucceeded(json) {
   return {
     type: 'POST_MESSAGE_SUCCEEDED',
-    payload: {content: content, author: author}
+    payload: {json: json}
+  };
+}
+
+function postMessageFailed(response) {
+  return {
+    type: 'POST_MESSAGE_FAILED',
+    payload: {response: response}
   };
 }
 
 export function postMessage(content, author) {
   return (dispatch) => {
-    dispatch(postMessageSucceeded(content, author));
+    dispatch(postMessageInitiated(content, author));
+    return fetch(endpoint('messages.json'), payload({
+      content: content, author: author
+    })).then((response) => {
+      if (response.ok) {
+        return response.json().then((json) => {
+          return dispatch(postMessageSucceeded(json));
+        });
+      } else {
+        return dispatch(postMessageFailed(response));
+      }
+    });
   };
 }
