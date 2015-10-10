@@ -35,10 +35,10 @@ export function getUsers() {
   };
 }
 
-function postUserInitiated(name) {
+function postUserInitiated(name, lastSeen) {
   return {
     type: 'POST_USER_INITIATED',
-    payload: {name: name}
+    payload: {name: name, lastSeen: lastSeen}
   };
 }
 
@@ -56,12 +56,12 @@ function postUserFailed(response) {
   };
 }
 
-export function postUser(name) {
+export function postUser(name, lastSeen) {
   return (dispatch) => {
-    dispatch(postUserInitiated(name));
-    fetch(endpoint('users.json'), payload({
-      name: name
-    })).then((response) => {
+    dispatch(postUserInitiated(name, lastSeen));
+    fetch(endpoint('users.json'), payload(
+      {name: name, lastSeen: lastSeen}
+    )).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
           dispatch(postUserSucceeded(json));

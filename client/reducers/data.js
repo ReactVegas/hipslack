@@ -3,7 +3,7 @@ export function users(state={}, {type, payload}) {
   case 'GET_USERS_SUCCEEDED':
     return {...state, ...payload.json};
   case 'POST_USER_INITIATED':
-    return {...state, optimistic: {name: payload.name}};
+    return {...state, optimistic: {name: payload.name, lastSeen: payload.lastSeen}};
   case 'POST_USER_SUCCEEDED':
     const {optimistic, ...oldState} = state;
     return {...oldState, [payload.json.name]: optimistic};

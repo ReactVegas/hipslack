@@ -59,9 +59,9 @@ function postMessageFailed(response) {
 export function postMessage(content, author) {
   return (dispatch) => {
     dispatch(postMessageInitiated(content, author));
-    fetch(endpoint('messages.json'), payload({
-      content: content, author: author
-    })).then((response) => {
+    fetch(endpoint('messages.json'), payload(
+      {content: content, author: author}
+    )).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
           dispatch(postMessageSucceeded(json));
