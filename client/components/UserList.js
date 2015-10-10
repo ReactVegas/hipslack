@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Component, PropTypes} from 'react';
-import {getUsers} from 'actions/data';
+import {getUsers} from 'actions/data/users';
 import User from 'components/User';
 
 let styles = {

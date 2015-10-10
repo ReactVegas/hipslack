@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {Component, PropTypes} from 'react';
 import {inputStyles, BUTTON_STYLES} from 'helpers/styles';
 import {setCurrentUserInput, toggleshowModal} from 'actions/ui';
-import {postUser} from 'actions/data';
+import {postUser} from 'actions/data/users';
 
 let styles = {
   title: {

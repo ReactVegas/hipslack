@@ -4,7 +4,7 @@ import {Component, PropTypes} from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import {SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT} from 'helpers/styles';
-import {getMessages, postMessage} from 'actions/data';
+import {getMessages, postMessage} from 'actions/data/messages';
 import {setMessageInput} from 'actions/ui';
 
 let styles = {
