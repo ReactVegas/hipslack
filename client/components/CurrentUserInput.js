@@ -54,7 +54,7 @@ class CurrentUserInput extends Component {
 
   handleClick() {
     let {postUser, currentUserInput, setCurrentUserInput, toggleshowModal} = this.props;
-    postUser({name: currentUserInput});
+    postUser(currentUserInput);
     setCurrentUserInput('');
     toggleshowModal(false);
   }

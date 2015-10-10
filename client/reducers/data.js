@@ -1,7 +1,12 @@
-export function users(state=[], {type, payload}) {
+export function users(state={}, {type, payload}) {
   switch (type) {
+  case 'GET_USERS_SUCCEEDED':
+    return {...state, ...payload.json};
   case 'POST_USER_INITIATED':
-    return [ ...state, payload.name];
+    return {...state, optimistic: {name: payload.name}};
+  case 'POST_USER_SUCCEEDED':
+    const {optimistic, ...oldState} = state;
+    return {...oldState, [payload.json.name]: optimistic};
   default:
     return state;
   }

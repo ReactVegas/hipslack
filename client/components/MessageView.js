@@ -26,7 +26,7 @@ class MessageView extends Component {
     postMessage: PropTypes.func.isRequired,
     messageInput: PropTypes.string.isRequired,
     setMessageInput: PropTypes.func.isRequired,
-    currentUser: PropTypes.object.isRequired
+    currentUser: PropTypes.string.isRequired
   }
 
   componentDidMount() {

@@ -18,7 +18,7 @@ class MessageInput extends Component {
     postMessage: PropTypes.func.isRequired,
     messageInput: PropTypes.string.isRequired,
     setMessageInput: PropTypes.func.isRequired,
-    currentUser: PropTypes.object.isRequired
+    currentUser: PropTypes.string.isRequired
   }
 
   state = {
@@ -46,7 +46,7 @@ class MessageInput extends Component {
     let enterKeyCode = 13;
     let {postMessage, messageInput, currentUser, setMessageInput} = this.props;
     if (event.keyCode === enterKeyCode) {
-      postMessage(messageInput, currentUser.name);
+      postMessage(messageInput, currentUser);
       setMessageInput('');
     }
   }

@@ -1,5 +1,7 @@
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {Component, PropTypes} from 'react';
+import {getUsers} from 'actions/data';
 import User from 'components/User';
 
 let styles = {
@@ -15,7 +17,12 @@ let styles = {
 
 class UserList extends Component {
   static propTypes = {
-    users: PropTypes.array.isRequired
+    users: PropTypes.array.isRequired,
+    getUsers: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
+    this.props.getUsers();
   }
 
   render() {
@@ -35,8 +42,14 @@ class UserList extends Component {
 
 function select(state) {
   return {
-    users: state.data.users
+    users: Object.values(state.data.users)
   };
 }
 
-export default connect(select)(UserList);
+function actions(dispatch) {
+  return bindActionCreators({
+    getUsers: getUsers
+  }, dispatch);
+}
+
+export default connect(select, actions)(UserList);
