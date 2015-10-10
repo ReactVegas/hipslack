@@ -4,8 +4,8 @@ import {Component, PropTypes} from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import {SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT} from 'helpers/styles';
+import {getMessages, postMessage} from 'actions/data';
 import {setMessageInput} from 'actions/ui';
-import {postMessage} from 'actions/data';
 
 let styles = {
   container: {
@@ -22,10 +22,15 @@ let styles = {
 class MessageView extends Component {
   static propTypes = {
     messages: PropTypes.array.isRequired,
+    getMessages: PropTypes.func.isRequired,
     postMessage: PropTypes.func.isRequired,
     messageInput: PropTypes.string.isRequired,
     setMessageInput: PropTypes.func.isRequired,
     currentUser: PropTypes.object.isRequired
+  }
+
+  componentDidMount() {
+    this.props.getMessages();
   }
 
   render() {
@@ -47,15 +52,16 @@ class MessageView extends Component {
 function select(state) {
   let {data, ui} = state;
   return {
-    messages: data.messages,
+    currentUser: ui.currentUser,
     messageInput: ui.messageInput,
-    currentUser: ui.currentUser
+    messages: Object.values(data.messages)
   };
 }
 
 function actions(dispatch) {
   return bindActionCreators({
     postMessage: postMessage,
+    getMessages: getMessages,
     setMessageInput: setMessageInput
   }, dispatch);
 }
