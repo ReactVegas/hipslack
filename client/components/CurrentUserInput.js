@@ -41,7 +41,7 @@ class CurrentUserInput extends Component {
           placeholder="Enter your name..."
           onBlur={() => this.setState({focused: false})}
           onFocus={() => this.setState({focused: true})}
-          onChange={(event) => setCurrentUserInput(event.target.value)}
+          onChange={(event) => setCurrentUserInput(event.currentTarget.value)}
           style={inputStyles(this.state.focused)}
           value={currentUserInput}
         />

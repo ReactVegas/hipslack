@@ -35,7 +35,7 @@ class MessageInput extends Component {
           onBlur={() => this.setState({focused: false})}
           onFocus={() => this.setState({focused: true})}
           onKeyDown={(event) => this.handleKeyDown(event)}
-          onChange={(event) => setMessageInput(event.target.value)}
+          onChange={(event) => setMessageInput(event.currentTarget.value)}
           style={inputStyles(this.state.focused)}
         />
       </div>
