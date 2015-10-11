@@ -1,7 +1,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Component, PropTypes} from 'react';
-import {getUsers} from 'actions/data/users';
+import {getUsers, updateUser} from 'actions/data/users';
+import {POLLING_INTERVAL} from 'helpers/network';
 import User from 'components/User';
 
 let styles = {
@@ -18,12 +19,27 @@ let styles = {
 class UserList extends Component {
   static propTypes = {
     users: PropTypes.array.isRequired,
-    getUsers: PropTypes.func.isRequired
+    getUsers: PropTypes.func.isRequired,
+    updateUser: PropTypes.func.isRequired,
+    currentUser: PropTypes.object.isRequired
   }
 
   componentDidMount() {
     this.props.getUsers();
-    // setInterval(this.props.getUsers, 5000);
+    setInterval(this.props.getUsers, POLLING_INTERVAL);
+
+    if (this.props.currentUser.id && this.props.currentUser.id !== 'optimistic') {
+      setInterval(() => this.props.updateUser(this.props.currentUser, Date.now()), POLLING_INTERVAL);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let newUserID = nextProps.currentUser.id;
+    let oldUserID = this.props.currentUser.id;
+
+    if (newUserID !== oldUserID && newUserID !== 'optimistic') {
+      setInterval(() => this.props.updateUser(this.props.currentUser, Date.now()), POLLING_INTERVAL);
+    }
   }
 
   render() {
@@ -42,14 +58,17 @@ class UserList extends Component {
 }
 
 function select(state) {
+  let {ui, data} = state;
   return {
-    users: Object.values(state.data.users)
+    currentUser: ui.currentUser,
+    users: Object.values(data.users)
   };
 }
 
 function actions(dispatch) {
   return bindActionCreators({
-    getUsers: getUsers
+    getUsers: getUsers,
+    updateUser: updateUser
   }, dispatch);
 }
 

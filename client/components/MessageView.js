@@ -5,6 +5,7 @@ import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import {SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT} from 'helpers/styles';
 import {getMessages, createMessage} from 'actions/data/messages';
+import {POLLING_INTERVAL} from 'helpers/network';
 import {setMessageInput} from 'actions/ui';
 
 let styles = {
@@ -31,7 +32,7 @@ class MessageView extends Component {
 
   componentDidMount() {
     this.props.getMessages();
-    // setInterval(this.props.getMessages, 5000);
+    setInterval(this.props.getMessages, POLLING_INTERVAL);
   }
 
   render() {

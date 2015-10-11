@@ -95,12 +95,12 @@ function updateUserFailed(response) {
   };
 }
 
-export function updateUser(id, lastSeen) {
+export function updateUser(currentUser, lastSeen) {
   return (dispatch) => {
-    dispatch(updateUserInitiated(id, lastSeen));
-    fetch(url('users.json'), {
+    dispatch(updateUserInitiated(currentUser, lastSeen));
+    fetch(url(`users/${currentUser.id}.json`), {
       method: 'put',
-      body: JSON.stringify({id: id, lastSeen: lastSeen})
+      body: JSON.stringify({name: currentUser.name, lastSeen: lastSeen})
     }).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
