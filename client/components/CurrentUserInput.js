@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {Component, PropTypes} from 'react';
 import {inputStyles, BUTTON_STYLES} from 'helpers/styles';
 import {setCurrentUserInput, toggleshowModal} from 'actions/ui';
-import {postUser} from 'actions/data/users';
+import {createUser} from 'actions/data/users';
 
 let styles = {
   title: {
@@ -22,7 +22,7 @@ class CurrentUserInput extends Component {
     currentUserInput: PropTypes.string.isRequired,
     setCurrentUserInput: PropTypes.func.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
-    postUser: PropTypes.func.isRequired
+    createUser: PropTypes.func.isRequired
   }
 
   state = {
@@ -53,8 +53,8 @@ class CurrentUserInput extends Component {
   }
 
   handleClick() {
-    let {postUser, currentUserInput, setCurrentUserInput, toggleshowModal} = this.props;
-    postUser(currentUserInput, Date.now());
+    let {createUser, currentUserInput, setCurrentUserInput, toggleshowModal} = this.props;
+    createUser(currentUserInput, Date.now());
     setCurrentUserInput('');
     toggleshowModal(false);
   }
@@ -70,7 +70,7 @@ function actions(dispatch) {
   return bindActionCreators({
     setCurrentUserInput: setCurrentUserInput,
     toggleshowModal: toggleshowModal,
-    postUser: postUser
+    createUser: createUser
   }, dispatch);
 }
 

@@ -1,4 +1,4 @@
-import {endpoint, payload} from 'helpers/network';
+import {url} from 'helpers/network';
 
 function getMessagesInitiated() {
   return {
@@ -23,7 +23,7 @@ function getMessagesFailed(response) {
 export function getMessages() {
   return (dispatch) => {
     dispatch(getMessagesInitiated());
-    fetch(endpoint('messages.json')).then((response) => {
+    fetch(url('messages.json')).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
           dispatch(getMessagesSucceeded(json));
@@ -35,39 +35,40 @@ export function getMessages() {
   };
 }
 
-function postMessageInitiated(content, author) {
+function createMessageInitiated(content, author) {
   return {
-    type: 'POST_MESSAGE_INITIATED',
+    type: 'CREATE_MESSAGE_INITIATED',
     payload: {content: content, author: author}
   };
 }
 
-function postMessageSucceeded(json) {
+function createMessageSucceeded(json) {
   return {
-    type: 'POST_MESSAGE_SUCCEEDED',
+    type: 'CREATE_MESSAGE_SUCCEEDED',
     payload: {json: json}
   };
 }
 
-function postMessageFailed(response) {
+function createMessageFailed(response) {
   return {
-    type: 'POST_MESSAGE_FAILED',
+    type: 'CREATE_MESSAGE_FAILED',
     payload: {response: response}
   };
 }
 
-export function postMessage(content, author) {
+export function createMessage(content, author) {
   return (dispatch) => {
-    dispatch(postMessageInitiated(content, author));
-    fetch(endpoint('messages.json'), payload(
-      {content: content, author: author}
-    )).then((response) => {
+    dispatch(createMessageInitiated(content, author));
+    fetch(url('messages.json'), {
+      method: 'post',
+      body: JSON.stringify({content: content, author: author})
+    }).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
-          dispatch(postMessageSucceeded(json));
+          dispatch(createMessageSucceeded(json));
         });
       } else {
-        dispatch(postMessageFailed(response));
+        dispatch(createMessageFailed(response));
       }
     });
   };

@@ -1,4 +1,4 @@
-import {endpoint, payload} from 'helpers/network';
+import {url} from 'helpers/network';
 
 function getUsersInitiated() {
   return {
@@ -23,7 +23,7 @@ function getUsersFailed(response) {
 export function getUsers() {
   return (dispatch) => {
     dispatch(getUsersInitiated());
-    fetch(endpoint('users.json')).then((response) => {
+    fetch(url('users.json')).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
           dispatch(getUsersSucceeded(json));
@@ -35,39 +35,79 @@ export function getUsers() {
   };
 }
 
-function postUserInitiated(name, lastSeen) {
+function createUserInitiated(name, lastSeen) {
   return {
-    type: 'POST_USER_INITIATED',
+    type: 'CREATE_USER_INITIATED',
     payload: {name: name, lastSeen: lastSeen}
   };
 }
 
-function postUserSucceeded(json) {
+function createUserSucceeded(json) {
   return {
-    type: 'POST_USER_SUCCEEDED',
+    type: 'CREATE_USER_SUCCEEDED',
     payload: {json: json}
   };
 }
 
-function postUserFailed(response) {
+function createUserFailed(response) {
   return {
-    type: 'POST_USER_FAILED',
+    type: 'CREATE_USER_FAILED',
     payload: {response: response}
   };
 }
 
-export function postUser(name, lastSeen) {
+export function createUser(name, lastSeen) {
   return (dispatch) => {
-    dispatch(postUserInitiated(name, lastSeen));
-    fetch(endpoint('users.json'), payload(
-      {name: name, lastSeen: lastSeen}
-    )).then((response) => {
+    dispatch(createUserInitiated(name, lastSeen));
+    fetch(url('users.json'), {
+      method: 'post',
+      body: JSON.stringify({name: name, lastSeen: lastSeen})
+    }).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
-          dispatch(postUserSucceeded(json));
+          dispatch(createUserSucceeded(json));
         });
       } else {
-        dispatch(postUserFailed(response));
+        dispatch(createUserFailed(response));
+      }
+    });
+  };
+}
+
+function updateUserInitiated(id, lastSeen) {
+  return {
+    type: 'UPDATE_USER_INITIATED',
+    payload: {id: id, lastSeen: lastSeen}
+  };
+}
+
+function updateUserSucceeded(json) {
+  return {
+    type: 'UPDATE_USER_SUCCEEDED',
+    payload: {json: json}
+  };
+}
+
+function updateUserFailed(response) {
+  return {
+    type: 'UPDATE_USER_FAILED',
+    payload: {response: response}
+  };
+}
+
+export function updateUser(id, lastSeen) {
+  return (dispatch) => {
+    dispatch(updateUserInitiated(id, lastSeen));
+    fetch(url('users.json'), {
+      method: 'put',
+      body: JSON.stringify({id: id, lastSeen: lastSeen})
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((json) => {
+          dispatch(updateUserSucceeded(json));
+        });
+      } else {
+        dispatch(updateUserFailed(response));
       }
     });
   };

@@ -4,7 +4,7 @@ import {Component, PropTypes} from 'react';
 import MessageList from 'components/MessageList';
 import MessageInput from 'components/MessageInput';
 import {SIDEBAR_WIDTH, MESSAGE_INPUT_CONTAINER_HEIGHT} from 'helpers/styles';
-import {getMessages, postMessage} from 'actions/data/messages';
+import {getMessages, createMessage} from 'actions/data/messages';
 import {setMessageInput} from 'actions/ui';
 
 let styles = {
@@ -23,7 +23,7 @@ class MessageView extends Component {
   static propTypes = {
     messages: PropTypes.array.isRequired,
     getMessages: PropTypes.func.isRequired,
-    postMessage: PropTypes.func.isRequired,
+    createMessage: PropTypes.func.isRequired,
     messageInput: PropTypes.string.isRequired,
     setMessageInput: PropTypes.func.isRequired,
     currentUser: PropTypes.string.isRequired
@@ -31,17 +31,18 @@ class MessageView extends Component {
 
   componentDidMount() {
     this.props.getMessages();
+    // setInterval(this.props.getMessages, 5000);
   }
 
   render() {
-    let {messages, messageInput, setMessageInput, postMessage, currentUser} = this.props;
+    let {messages, messageInput, setMessageInput, createMessage, currentUser} = this.props;
     return (
       <div style={styles.container}>
         <MessageList messages={messages} />
         <MessageInput
-          postMessage={postMessage}
           messageInput={messageInput}
           setMessageInput={setMessageInput}
+          createMessage={createMessage}
           currentUser={currentUser}
         />
       </div>
@@ -60,8 +61,8 @@ function select(state) {
 
 function actions(dispatch) {
   return bindActionCreators({
-    postMessage: postMessage,
     getMessages: getMessages,
+    createMessage: createMessage,
     setMessageInput: setMessageInput
   }, dispatch);
 }

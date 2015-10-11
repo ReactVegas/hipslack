@@ -15,7 +15,7 @@ let styles = {
 
 class MessageInput extends Component {
   static propTypes = {
-    postMessage: PropTypes.func.isRequired,
+    createMessage: PropTypes.func.isRequired,
     messageInput: PropTypes.string.isRequired,
     setMessageInput: PropTypes.func.isRequired,
     currentUser: PropTypes.string.isRequired
@@ -44,9 +44,9 @@ class MessageInput extends Component {
 
   handleKeyDown(event) {
     let enterKeyCode = 13;
-    let {postMessage, messageInput, currentUser, setMessageInput} = this.props;
+    let {createMessage, messageInput, currentUser, setMessageInput} = this.props;
     if (event.keyCode === enterKeyCode) {
-      postMessage(messageInput, currentUser);
+      createMessage(messageInput, currentUser);
       setMessageInput('');
     }
   }

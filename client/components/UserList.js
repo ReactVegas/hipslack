@@ -23,6 +23,7 @@ class UserList extends Component {
 
   componentDidMount() {
     this.props.getUsers();
+    // setInterval(this.props.getUsers, 5000);
   }
 
   render() {

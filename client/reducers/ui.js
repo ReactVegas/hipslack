@@ -1,6 +1,6 @@
 export function currentUser(state='', { type, payload }) {
   switch (type) {
-  case 'POST_USER_INITIATED':
+  case 'CREATE_USER_INITIATED':
     return payload.name;
   default:
     return state;
