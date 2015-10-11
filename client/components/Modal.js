@@ -30,12 +30,12 @@ class Modal extends Component {
   static propTypes = {
     showModal: PropTypes.bool.isRequired,
     toggleshowModal: PropTypes.func.isRequired,
-    currentUser: PropTypes.string.isRequired,
+    currentUser: PropTypes.object.isRequired,
     children: PropTypes.any.isRequired
   }
 
   componentWillMount() {
-    if (!this.props.currentUser) {
+    if (!this.props.currentUser.id) {
       this.props.toggleshowModal(true);
     }
   }

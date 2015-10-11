@@ -1,13 +1,15 @@
-export function currentUser(state='', { type, payload }) {
+export function currentUser(state={}, {type, payload}) {
   switch (type) {
   case 'CREATE_USER_INITIATED':
-    return payload.name;
+    return {id: 'optimistic', name: payload.name};
+  case 'CREATE_USER_SUCCEEDED':
+    return {id: payload.json.name, name: state.name};
   default:
     return state;
   }
 }
 
-export function currentUserInput(state='', { type, payload }) {
+export function currentUserInput(state='', {type, payload}) {
   switch (type) {
   case 'SET_CURRENT_USER_INPUT':
     return payload.name;
@@ -16,7 +18,7 @@ export function currentUserInput(state='', { type, payload }) {
   }
 }
 
-export function messageInput(state='', { type, payload }) {
+export function messageInput(state='', {type, payload}) {
   switch (type) {
   case 'SET_MESSAGE_INPUT':
     return payload.input;
@@ -25,7 +27,7 @@ export function messageInput(state='', { type, payload }) {
   }
 }
 
-export function showModal(state=false, { type, payload }) {
+export function showModal(state=false, {type, payload}) {
   switch (type) {
   case 'TOGGLE_SHOW_MODAL':
     return payload.bool;
